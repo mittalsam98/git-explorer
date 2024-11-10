@@ -1,5 +1,5 @@
 import AppLayout from '@/AppLayout';
-import Repositories from '@/components/Repositories';
+import Repositories from '@/pages/Repositories';
 import UserProfile from '@/pages/UserProfile';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
@@ -11,12 +11,12 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Repositories />
-      },
-      {
-        path: '/:username',
-        element: <UserProfile />
       }
     ]
+  },
+  {
+    path: '/:username',
+    element: <UserProfile />
   }
 ]);
 

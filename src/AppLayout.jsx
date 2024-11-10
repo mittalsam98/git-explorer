@@ -1,11 +1,10 @@
 import { Outlet } from 'react-router-dom';
-import Header from './components/Header';
-import Repositories from './components/Repositories';
+import SearchInput from './components/Search';
 
 function AppLayout() {
   return (
-    <div className='w-full'>
-      <Header />
+    <div className='w-full flex flex-col items-center'>
+      <SearchInput />
       <Outlet />
     </div>
   );
