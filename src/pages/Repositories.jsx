@@ -4,6 +4,7 @@ import { ChevronRight } from 'lucide-react';
 import UserCard from '../components/UserCard';
 import { Skeleton } from '@/components/ui/skeleton';
 import NotFound from '@/components/NotFound';
+import homepage from '@/assets/homepage.svg';
 import { gitAxiosConig } from '@/lib/axiosConfig';
 
 export default function Repositories() {
@@ -68,14 +69,16 @@ export default function Repositories() {
         state?.usersData?.map((val) => {
           return <UserCard val={val} />;
         })
-      ) : (
+      ) : state?.searchQuery ? (
         <NotFound
           errorHeading=''
           errorDescription={`Sorry, we can't find the user. Check the username you are trying to find.`}
         />
+      ) : (
+        <img src={homepage} />
       )}
 
-      {state?.usersData.length && (
+      {state?.usersData.length > 0 ? (
         <div className='flex justify-between w-full mt-4'>
           <button
             onClick={handlePreviousPage}
@@ -95,7 +98,7 @@ export default function Repositories() {
             Next
           </button>
         </div>
-      )}
+      ) : null}
     </div>
   );
 }

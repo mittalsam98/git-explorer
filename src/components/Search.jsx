@@ -26,23 +26,18 @@ export default function SearchInput() {
       payload: true
     });
 
-    // When no username query is present API endpoint will be /users which finds random users
-    const url = username ? `search/users?q=${username}` : '/users';
+    const url = `search/users?q=${username}`;
 
     gitAxiosConig(url)
       .then((res) => {
-        // For search query endpoint API response includes items and total_count key as per doc
         dispatch({
           type: 'SET_USERS_DATA',
-          payload: username ? res?.data?.items : res?.data
+          payload: res?.data?.items
         });
-        if (username) {
-          dispatch({
-            type: 'SET_USERS_DATA_TOTAL_COUNT',
-            payload: res?.data?.total_count
-          });
-        }
-        dispatch({ type: 'SET_SEARCH_QUERY', payload: username });
+        dispatch({
+          type: 'SET_USERS_DATA_TOTAL_COUNT',
+          payload: res?.data?.total_count
+        });
       })
       .catch((err) => {
         toast('Seomthing went wrong');
@@ -52,6 +47,7 @@ export default function SearchInput() {
         });
       })
       .finally(() => {
+        dispatch({ type: 'SET_SEARCH_QUERY', payload: username });
         dispatch({
           type: 'SET_USERS_DATA_FETCHING',
           payload: false
@@ -66,13 +62,13 @@ export default function SearchInput() {
   return (
     <div className='flex h-16 justify-center items-center px-6 w-full'>
       <div className='relative w-[500px]'>
-        <Search className='absolute left-2 top-2.5 h-4 w-4 text-muted-foreground' />
+        <Search className='absolute left-2 top-2.5 h-4 w-4' />
         <Input
           ref={inputRef}
           type='search'
           placeholder='Search by username.....'
           onChange={handleChange}
-          className='w-full pl-8'
+          className='w-full pl-8 border border-gray-500	rounded-2xl'
         />
       </div>
     </div>

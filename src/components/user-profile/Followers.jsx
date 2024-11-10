@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { BookCopy } from 'lucide-react';
+import { BookCopy, ExternalLink } from 'lucide-react';
 import { gitAxiosConig } from '@/lib/axiosConfig';
 import { Skeleton } from '@/components/ui/skeleton';
 import UserCard from '@/components/UserCard';
@@ -56,6 +56,12 @@ export default function Followers({ type }) {
                 <p className='text-lg font-medium text-gray-900 truncate dark:text-white'>
                   {val.login}
                 </p>
+                <ExternalLink
+                  className='h-4 w-4'
+                  onClick={() => {
+                    window.open(val.html_url, '_blank');
+                  }}
+                />
               </div>
             );
           })}

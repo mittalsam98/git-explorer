@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { BookCopy } from 'lucide-react';
+import { BookCopy, Star } from 'lucide-react';
 import { gitAxiosConig } from '@/lib/axiosConfig';
 import { Skeleton } from '@/components/ui/skeleton';
+import { getColorCode } from '@/lib/utils';
 
 export default function RepoesTab() {
   const { username } = useParams();
@@ -32,7 +33,7 @@ export default function RepoesTab() {
   }, [username]);
 
   return (
-    <div className='flex flex-col gap-3 items-center mt-5'>
+    <div className='flex flex-col gap-3 items-center my-5'>
       {loading
         ? Array.from({ length: 5 }).map((val) => {
             return (
@@ -80,6 +81,19 @@ const RepoNameCard = ({ val }) => {
       )}
       <div className='mt-1'>
         <span className='text-sm'>{val.description}</span>
+      </div>
+      <div className='flex items-center gap-1 text-sm mt-2'>
+        {val.language && (
+          <>
+            <div
+              style={{ background: getColorCode(val.language) }}
+              className={`h-3 w-3 rounded-[50%]`}
+            ></div>
+            <span className='text-sm pr-2'>{val.language}</span>
+          </>
+        )}
+        <Star className='h-3 w-3' />
+        <span className='text-sm'>{val.stargazers_count}</span>
       </div>
     </div>
   );

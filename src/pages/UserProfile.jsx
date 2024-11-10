@@ -39,7 +39,7 @@ export default function UserProfile() {
   //   return <NotFound />;
   // }
   return (
-    <div className='flex flex-col items-center justify-center w-full pt-6 lg:pt-8 bg-slate-50'>
+    <div className='flex flex-col items-center justify-center w-full py-6 lg:pt-8 bg-slate-50'>
       <div
         className='flex mb-5 self-start pl-6 lg:pl-24 pb-6'
         onClick={() => {
