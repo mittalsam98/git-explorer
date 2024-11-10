@@ -1,14 +1,13 @@
-import { debounce } from '@/lib/utils';
-import React, { useEffect, useRef, useState } from 'react';
-import { Input } from './ui/input';
-import { useGitContext } from '@/lib/gitContext';
 import { gitAxiosConig } from '@/lib/axiosConfig';
+import { useGitContext } from '@/lib/gitContext';
+import { debounce } from '@/lib/utils';
 import { Search } from 'lucide-react';
-import NotFound from './NotFound';
+import { useEffect, useRef } from 'react';
 import { toast } from 'sonner';
+import { Input } from './ui/input';
 
 export default function SearchInput() {
-  const { dispatch } = useGitContext();
+  const { state, dispatch } = useGitContext();
   const inputRef = useRef();
 
   useEffect(() => {
@@ -16,7 +15,6 @@ export default function SearchInput() {
     if (inputRef?.current) {
       inputRef.current.focus();
       inputRef.current.value = 'mittalsam98';
-      fetchByUserName('mittalsam98');
     }
   }, [inputRef]);
 
@@ -40,7 +38,6 @@ export default function SearchInput() {
         });
       })
       .catch((err) => {
-        toast('Seomthing went wrong');
         dispatch({
           type: 'SET_USERS_DATA',
           payload: []

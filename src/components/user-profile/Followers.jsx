@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { BookCopy, ExternalLink } from 'lucide-react';
-import { gitAxiosConig } from '@/lib/axiosConfig';
 import { Skeleton } from '@/components/ui/skeleton';
-import UserCard from '@/components/UserCard';
+import { gitAxiosConig } from '@/lib/axiosConfig';
+import { ExternalLink } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
+/**
+ * 
+ * @props {type} // for fetching the following and following details 
+ */
 export default function Followers({ type }) {
   const { username } = useParams();
   const [loading, setLoading] = useState(false);

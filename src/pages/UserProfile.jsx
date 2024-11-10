@@ -9,9 +9,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 export default function UserProfile() {
   const { username } = useParams();
-  const { state, dispatch } = useGitContext();
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(true);
+  const [error, setError] = useState(false);
   const [userData, setUserData] = useState({});
   const navigate = useNavigate();
 
@@ -25,7 +24,7 @@ export default function UserProfile() {
         setUserData(res?.data);
       })
       .catch((err) => {
-        setError(true);
+        setError(err?.message ?? 'Something went wrong');
       })
       .finally(() => {
         setLoading(false);
@@ -35,9 +34,22 @@ export default function UserProfile() {
   useEffect(() => {
     fetchByUserName();
   }, [username]);
-  // if (error) {
-  //   return <NotFound />;
-  // }
+
+  if (error) {
+    return (
+      <div className='flex flex-col items-center justify-center w-full py-6 lg:pt-8 bg-slate-50'>
+        <div
+          className='flex mb-5 self-start pl-6 lg:pl-24 pb-6'
+          onClick={() => {
+            navigate('/');
+          }}
+        >
+          <ArrowLeft /> Go Back
+        </div>
+        <NotFound errorSubHeading={error} />
+      </div>
+    );
+  }
   return (
     <div className='flex flex-col items-center justify-center w-full py-6 lg:pt-8 bg-slate-50'>
       <div
@@ -48,10 +60,12 @@ export default function UserProfile() {
       >
         <ArrowLeft /> Go Back
       </div>
-      <div className='flex flex-col lg:w-3/5 lg:flex-row gap-5'>
-        <SideBar user={userData} />
-        <RightSection user={userData} />
-      </div>
+      {userData && (
+        <div className='flex flex-col lg:w-3/5 lg:flex-row gap-5'>
+          <SideBar user={userData} />
+          <RightSection />
+        </div>
+      )}
     </div>
   );
 }

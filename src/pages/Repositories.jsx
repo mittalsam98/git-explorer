@@ -1,11 +1,10 @@
-import { useGitContext } from '@/lib/gitContext';
-import React, { useEffect, useState } from 'react';
-import { ChevronRight } from 'lucide-react';
-import UserCard from '../components/UserCard';
-import { Skeleton } from '@/components/ui/skeleton';
-import NotFound from '@/components/NotFound';
 import homepage from '@/assets/homepage.svg';
+import NotFound from '@/components/NotFound';
+import { Skeleton } from '@/components/ui/skeleton';
 import { gitAxiosConig } from '@/lib/axiosConfig';
+import { useGitContext } from '@/lib/gitContext';
+import { useEffect, useState } from 'react';
+import UserCard from '../components/UserCard';
 
 export default function Repositories() {
   const { state, dispatch } = useGitContext();

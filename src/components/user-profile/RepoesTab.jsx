@@ -1,19 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { BookCopy, Star } from 'lucide-react';
-import { gitAxiosConig } from '@/lib/axiosConfig';
 import { Skeleton } from '@/components/ui/skeleton';
+import { gitAxiosConig } from '@/lib/axiosConfig';
 import { getColorCode } from '@/lib/utils';
+import { BookCopy, Star } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 export default function RepoesTab() {
   const { username } = useParams();
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(true);
   const [repoesData, setRepoesData] = useState([]);
 
   const fetchRepoesUserName = () => {
     setLoading(true);
-    setError(false);
     const url = `users/${username}/repos`;
 
     gitAxiosConig(url)
@@ -21,7 +19,7 @@ export default function RepoesTab() {
         setRepoesData(res?.data);
       })
       .catch((err) => {
-        setError(true);
+        setError(err?.message ?? 'Something went wrong');
       })
       .finally(() => {
         setLoading(false);

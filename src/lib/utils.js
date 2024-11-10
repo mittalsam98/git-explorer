@@ -5,6 +5,11 @@ export function cn(...inputs) {
   return twMerge(clsx(inputs));
 }
 
+/**
+ * @param {*} cb //callback function on which we have to apply debounce
+ * @param {*} timeout // time in ms
+ * @returns
+ */
 export function debounce(cb, timeout = 300) {
   if (timeout < 0) {
     return;

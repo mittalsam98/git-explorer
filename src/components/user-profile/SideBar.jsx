@@ -1,13 +1,9 @@
-import { Link, MapPin, Twitter, UserRoundCheck } from 'lucide-react';
-import React from 'react';
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
   DialogTrigger
 } from '@/components/ui/dialog';
+import { Link, MapPin, Twitter, UserRoundCheck } from 'lucide-react';
 import Followers from './Followers';
 
 export default function SideBar(props) {

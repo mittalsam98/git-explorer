@@ -1,7 +1,7 @@
-import { gitReducer } from './gitReducer';
 import { createContext, useContext, useReducer } from 'react';
+import { gitReducer } from './gitReducer';
 
-const initialState = { usersData: [], userDataFetching: false };
+const initialState = { usersData: [], userDataFetching: false, searchQuery: 'mittalsam98' };
 
 const GitContext = createContext();
 
