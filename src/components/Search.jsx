@@ -14,7 +14,7 @@ export default function SearchInput() {
     console.log({ inputRef });
     if (inputRef?.current) {
       inputRef.current.focus();
-      inputRef.current.value = 'mittalsam98';
+      inputRef.current.value = state.searchQuery;
     }
   }, [inputRef]);
 

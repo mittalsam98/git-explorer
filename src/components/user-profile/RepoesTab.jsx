@@ -32,19 +32,23 @@ export default function RepoesTab() {
 
   return (
     <div className='flex flex-col gap-3 items-center my-5'>
-      {loading
-        ? Array.from({ length: 5 }).map((val) => {
-            return (
-              <div className='border p-3 gap-2 rounded-lg w-[300px] sm:w-[400px] lg:w-[500px]'>
-                <Skeleton className='h-3 w-3/4 mt-2 rounded-xl' />
-                <Skeleton className='h-3 w-2/4 mt-2 rounded-xl' />
-                <Skeleton className='h-3 w-full mt-2 rounded-xl' />
-              </div>
-            );
-          })
-        : repoesData?.map((val) => {
-            return <RepoNameCard id={val?.id} val={val} />;
-          })}
+      {loading ? (
+        Array.from({ length: 5 }).map((val) => {
+          return (
+            <div className='border p-3 gap-2 rounded-lg w-[300px] sm:w-[400px] lg:w-[500px]'>
+              <Skeleton className='h-3 w-3/4 mt-2 rounded-xl' />
+              <Skeleton className='h-3 w-2/4 mt-2 rounded-xl' />
+              <Skeleton className='h-3 w-full mt-2 rounded-xl' />
+            </div>
+          );
+        })
+      ) : repoesData.length ? (
+        repoesData?.map((val) => {
+          return <RepoNameCard id={val?.id} val={val} />;
+        })
+      ) : (
+        <div className='text-xl font-semibold italic'> No result found</div>
+      )}
     </div>
   );
 }

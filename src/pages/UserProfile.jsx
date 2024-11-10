@@ -2,9 +2,8 @@ import NotFound from '@/components/NotFound';
 import RightSection from '@/components/user-profile/RightSection';
 import SideBar from '@/components/user-profile/SideBar';
 import { gitAxiosConig } from '@/lib/axiosConfig';
-import { useGitContext } from '@/lib/gitContext';
-import { ArrowLeft, StepBack, StepBackIcon } from 'lucide-react';
-import React, { useEffect, useState } from 'react';
+import { ArrowLeft } from 'lucide-react';
+import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 export default function UserProfile() {
